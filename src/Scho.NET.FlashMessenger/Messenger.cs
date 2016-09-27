@@ -17,9 +17,9 @@ namespace Scho.NET.FlashMessenger
 			Messages = Storage.Read().ToList();
 		}
 
-		public void Save()
+		public void AddInfoMessage(string Format, params string[] args)
 		{
-			Storage.Save(Messages);
+			AddMessage(string.Format(Format, args), MessageType.Info);
 		}
 
 		public void AddInfoMessage(string Content)
@@ -27,14 +27,29 @@ namespace Scho.NET.FlashMessenger
 			AddMessage(Content, MessageType.Info);
 		}
 
+		public void AddSuccessMessage(string Format, params string[] args)
+		{
+			AddMessage(string.Format(Format, args), MessageType.Success);
+		}
+
 		public void AddSuccessMessage(string Content)
 		{
 			AddMessage(Content, MessageType.Success);
 		}
 
+		public void AddWarningMessage(string Format, params string[] args)
+		{
+			AddMessage(string.Format(Format, args), MessageType.Warning);
+		}
+
 		public void AddWarningMessage(string Content)
 		{
 			AddMessage(Content, MessageType.Warning);
+		}
+
+		public void AddCriticleMessage(string Format, params string[] args)
+		{
+			AddMessage(string.Format(Format, args), MessageType.Criticle);
 		}
 
 		public void AddCriticleMessage(string Content)
@@ -63,7 +78,6 @@ namespace Scho.NET.FlashMessenger
 			return GetMessages(MessageType.Criticle);
 		}
 
-
 		public void AddMessage(string Content, MessageType Type)
 		{
 			AddMessage(new Message(Content, Type));
@@ -72,6 +86,7 @@ namespace Scho.NET.FlashMessenger
 		public void AddMessage(Message Message)
 		{
 			Messages.Add(Message);
+			Storage.Save(Messages);
 		}
 
 		public IEnumerable<string> GetMessages(MessageType Type)
