@@ -4,6 +4,12 @@ using System.Collections;
 
 namespace Scho.NET.Configuration
 {
+	/// <summary>
+	/// Retrieves the unic environment variables, setup up like this
+	/// [Environment]::SetEnvironmentVariable("UNIC_ENVIRONMENT", "production", "Machine")
+	/// key = "environment"; value = "production"
+	/// More: here https://technet.microsoft.com/en-us/library/ff730964.aspx
+	/// </summary>
 	public class EnvironmentConfigurationSource : IConfigurationSource
 	{
 		public void Populate(IConfiguration config, string prefix)

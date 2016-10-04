@@ -13,7 +13,7 @@ namespace Scho.NET.Configuration
 		public Configuration(IEnumerable<IConfigurationSource> sources, string prefix = "")
 		{
 			_settings = new NameValueCollection();
-			Prefix = "";
+			Prefix = prefix;
 			LoadConfiguration(sources);
 		}
 
